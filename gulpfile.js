@@ -45,14 +45,6 @@ gulp.task('js', () => {
         .pipe(reload({stream:true}));
 });
 
-gulp.task('bs', () => {
-    browserSync.init({
-        server: {
-            baseDir: './'
-        }
-    });
-});
-
 gulp.task('default', ['js','bs', 'styles'], () => {
     gulp.watch('dev/**/*.js',['js']);
     gulp.watch('dev/**/*.scss',['styles']);
