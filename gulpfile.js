@@ -9,12 +9,23 @@ const notify = require('gulp-notify');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
+const historyApiFallback = require('connect-history-api-fallback');
 
 gulp.task('styles', () => {
     return gulp.src('./dev/styles/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('style.css'))
         .pipe(gulp.dest('./public/styles'))
+});
+
+
+gulp.task('bs', () => {
+    browserSync.init({
+        server: {
+            baseDir: './'
+        },
+        middleware: [historyApiFallback()]
+    });
 });
 
 gulp.task('js', () => {
